@@ -72,22 +72,13 @@ let htmlDoc = `<!DOCTYPE html>
             <!-- align-items: center; -->
             <!-- justify-content: center; -->
             <!-- width: 200px; -->
-            height: 230px !important;
+            height: 220px !important;
             margin: 5px;
             <!-- align-items: stretch; -->
             <!-- align-items: center; -->
             border: 1px solid #333;
             background-color: #212124;
         }
-        <!-- .flexbox-photobox { -->
-        <!--     display: flex; -->
-        <!--     align-items: center; -->
-        <!--     justify-content: center; -->
-        <!--     <!-1- flex-direction: column; -1-> -->
-        <!--     height: 185px !important; -->
-        <!--     flex-wrap: wrap; -->
-        <!--     background-color: black; -->
-        <!-- } -->
         .flexbox-photo {
             display: flex;
             width: 100%;
@@ -101,7 +92,7 @@ let htmlDoc = `<!DOCTYPE html>
         .flexbox-caption {
             display: flex;
             width: 100%;
-            height: 25px !important;
+            height: 20px !important;
             flex-direction: row;
             justify-content: left;
             align-items: center;
@@ -114,7 +105,7 @@ let htmlDoc = `<!DOCTYPE html>
         }
         .flexbox-site {
             width: 100%;
-            height: 20px !important;
+            height: 15px !important;
             <!-- margin: 3px; -->
             border: 1px solid #333;
             background-color: #212124;
