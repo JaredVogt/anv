@@ -9,38 +9,41 @@
         .flexbox-container {
             display: flex;
             flex-wrap: wrap;
-            <!-- margin: 30px; -->
 
-        }
+       }
         .flexbox-header {
           display: flex;
-          height: 300;
-          width: 900;
+          height: 200px !important;
+          align-items: center;
+          justify-content: center;
+          width: 1000px !important;
+          background-image: url(https://user-images.githubusercontent.com/968047/165668045-d8f0f74f-1a25-48aa-aca3-d9898112b586.png);
+        }
+        .flexbox-searchContainer {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+            border: 0px solid yellow;
+          height: 200px !important;
+
+        }
+        .flexbox-searchbar {
+            border: 0px solid white;
+          height: 155px !important;
         }
         .flexbox-item {
             display: flex;
             flex-wrap: wrap;
-            <!-- flex-direction: column; -->
-            <!-- margin: auto; -->
-            <!-- align-items: center; -->
-            <!-- justify-content: center; -->
-            <!-- width: 200px; -->
             height: 220px !important;
             margin: 5px;
-            <!-- align-items: stretch; -->
-            <!-- align-items: center; -->
-            border: 1px solid #333;
-            background-color: #212124;
+            /* border: 1px solid #333; */
+            background-color: white;
         }
         .flexbox-photo {
             display: flex;
             width: 100%;
-            <!-- height: 185px !important; -->
-            <!-- margin: 3px; -->
-            <!-- border: 1px solid #333; -->
-            align-items: center;
             justify-content: center;
-            background-color: #212124;
+            background-color: white;
         }
         .flexbox-caption {
             display: flex;
@@ -49,27 +52,138 @@
             flex-direction: row;
             justify-content: left;
             align-items: center;
-            <!-- margin: 3px; -->
-            border: 1px solid #333;
-            background-color: #212124;
-            color:  #D7DBDD;
+            /*  margin: 3px; */ 
+            /*  border: 1px solid #333; */
             font-family: Graphik Light, Helvetica, sans-serif;
             font-size: 0.72em;
         }
         .flexbox-site {
             width: 100%;
             height: 15px !important;
-            <!-- margin: 3px; -->
-            border: 1px solid #333;
-            background-color: #212124;
+            /* border: 1px solid #333; */
+            background-color: white;
             font-size: 0.65em;
-            color: #D7DBDD;
         }
-
+
+
+        * {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #303134;
+  color: white;
+  /* border-radius: 20px; */
+  padding: 15px;
+  font-size: 15px;
+}
+
+input[type=text] {
+  background-color: #303134;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: white;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #303134;
+  color: white;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 60px;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #303134; 
+  border-bottom: 1px solid #303134; 
+  border-left: 1px solid #303134; 
+  border-right: 1px solid #303134; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: gray; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: gray !important; 
+  color: #ffffff; 
+
+}
+  /* This is the new styling for the bar*/
+.form {
+  display: flex;
+  flex-direction: row;
+}
+.search-field {
+  width: 90%;
+  padding: 10px 15px 10px 15px;
+  border: none;
+  outline: none;
+}
+
+.search-button {
+  background: transparent;
+  border: none;
+  outline: 1px;
+  margin-left: -33px;
+}
+
+.search-button img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+
     </style>
 </head>
-<body style="background-color:#212124;">
-<div class="flexbox-header"><img src="https://user-images.githubusercontent.com/968047/165564195-c6895d4b-10f1-4c85-ae5f-c26720d5afbb.png"></div>
+<body style="background-color: white;">
+<div class="flexbox-header">
+
+<div class="flexbox-searchContainer">
+<div class="flexbox-searchbar">
+<form action="" autocomplete="off" class="form">
+  <div class="autocomplete" style="width:600px;">
+        <input id="myInput" type="search" placeholder="Search" class="search-field" >
+    <!-- <input id="myInput" type="text" name="myCountry" placeholder="Search"> -->
+        <button type="submit" class="search-button" onclick="document.location = 'https://htmlpreview.github.io/?https://raw.githubusercontent.com/JaredVogt/anv/main/output.html'; return false">
+          <img src="search.png">
+        </button>
+        </div>
+  </div>
+      </form>
+</div>
+</div>
 
 
 
@@ -112,14 +226,6 @@
     <div class="flexbox-site">this.that.com
     </div>
   </div>
-  <div class="flexbox-item"  style="width: 150px;">
-    <div class="flexbox-photo"><img src=https://user-images.githubusercontent.com/968047/164947712-1a42583f-17ce-4db0-a3b5-897ee01356e2.png width=137>
-    </div>
-    <div class="flexbox-caption">Family honors Modern ...
-    </div>
-    <div class="flexbox-site">this.that.com
-    </div>
-  </div>
   <div class="flexbox-item"  style="width: 306px;">
     <div class="flexbox-photo"><img src=https://user-images.githubusercontent.com/968047/165416833-604f5947-3abf-49d6-972a-8987e749165c.png width=306>
     </div>
@@ -153,25 +259,9 @@
     </div>
   </div>
   <div class="flexbox-item"  style="width: 150px;">
-    <div class="flexbox-photo"><img src=https://user-images.githubusercontent.com/968047/164947637-1ab0cc54-d4a2-4dec-8375-97af98b64960.png width=132>
-    </div>
-    <div class="flexbox-caption">Sonja J Richards arra...
-    </div>
-    <div class="flexbox-site">this.that.com
-    </div>
-  </div>
-  <div class="flexbox-item"  style="width: 150px;">
     <div class="flexbox-photo"><img src=https://user-images.githubusercontent.com/968047/164947782-d93520f8-53b6-4f71-8d5c-e68d4fa3283a.png width=122>
     </div>
     <div class="flexbox-caption">The time I spent the ...
-    </div>
-    <div class="flexbox-site">this.that.com
-    </div>
-  </div>
-  <div class="flexbox-item"  style="width: 150px;">
-    <div class="flexbox-photo"><img src=https://user-images.githubusercontent.com/968047/164947681-984f35e2-5601-4196-ae5a-d82e03f2f36b.png width=138>
-    </div>
-    <div class="flexbox-caption">Sonja J Richards arra...
     </div>
     <div class="flexbox-site">this.that.com
     </div>
@@ -200,14 +290,6 @@
     <div class="flexbox-site">this.that.com
     </div>
   </div>
-  <div class="flexbox-item"  style="width: 150px;">
-    <div class="flexbox-photo"><img src=https://user-images.githubusercontent.com/968047/164947688-bebe49f4-8de1-4116-8103-39415ba9d7cd.png width=138>
-    </div>
-    <div class="flexbox-caption">Sonja J Richards arra...
-    </div>
-    <div class="flexbox-site">this.that.com
-    </div>
-  </div>
   <div class="flexbox-item"  style="width: 252px;">
     <div class="flexbox-photo"><img src=https://user-images.githubusercontent.com/968047/165416925-34af03b3-ddfa-48c9-a639-9825207bf9de.png width=252>
     </div>
@@ -222,14 +304,6 @@
     <div class="flexbox-caption">This is a fun photo
     </div>
     <div class="flexbox-site">more.that
-    </div>
-  </div>
-  <div class="flexbox-item"  style="width: 150px;">
-    <div class="flexbox-photo"><img src=https://user-images.githubusercontent.com/968047/164947652-93f268c0-abb9-41e2-9c83-c259e97dcd42.png width=138>
-    </div>
-    <div class="flexbox-caption">Sonja J Richards arra...
-    </div>
-    <div class="flexbox-site">this.that.com
     </div>
   </div>
   <div class="flexbox-item"  style="width: 320px;">
@@ -288,14 +362,6 @@
     <div class="flexbox-site">this.that.com
     </div>
   </div>
-  <div class="flexbox-item"  style="width: 307px;">
-    <div class="flexbox-photo"><img src=https://user-images.githubusercontent.com/968047/165554532-370f1be0-3555-4ec3-b2eb-641f8aed7b36.png width=307>
-    </div>
-    <div class="flexbox-caption">This is a fun photo
-    </div>
-    <div class="flexbox-site">more.that
-    </div>
-  </div>
   <div class="flexbox-item"  style="width: 150px;">
     <div class="flexbox-photo"><img src=https://user-images.githubusercontent.com/968047/164947808-a4e143dd-9765-42d0-b262-af4beae5bba9.png width=137>
     </div>
@@ -326,5 +392,114 @@
 
 
    </div>
+
+<!--  everything below this is the script for the autocomplete -->
+<script>
+
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+/*An array containing all the country names in the world:*/
+var countries = ['Sonja J Richardson', 'Sonja J Richardson Architect', 'Sonja J Richardson - Little Rock', 'Seriously twisted pretzels', 'See how she runs', 'So you wanna be a millionaire', 'Son of a bitch, get me a drink']
+
+/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+autocomplete(document.getElementById("myInput"), countries);
+</script>
+
+
 </body>
 </html>

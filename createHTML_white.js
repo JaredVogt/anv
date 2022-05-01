@@ -22,7 +22,7 @@ const allSheetData = ep.grabSheets(excelFullPath, sheetsInfo)  // processing/val
 const baseWidth = 150
 const maxLength = 24
 const baseURL = 'https://user-images.githubusercontent.com/968047/'
-let output = ''
+let output_white = ''
 
 for (let image of allSheetData.Images) {
   let width = parseInt(image.assocWidth) < baseWidth ? baseWidth : parseInt(image.assocWidth)
@@ -39,7 +39,7 @@ for (let image of allSheetData.Images) {
     </div>
   </div>`  
    
-  output += theOne // console.log(theOne)
+  output_white += theOne // console.log(theOne)
 }
 
 
@@ -60,37 +60,38 @@ let htmlDoc = `<!DOCTYPE html>
        }
         .flexbox-header {
           display: flex;
-          height: 200px !important;
+          height: 130px !important;
           align-items: center;
           justify-content: center;
           width: 1000px !important;
-          background-image: url(https://user-images.githubusercontent.com/968047/165668045-d8f0f74f-1a25-48aa-aca3-d9898112b586.png);
+          background-image: url(https://user-images.githubusercontent.com/968047/166125988-756c4c0a-b2c1-41a8-9fe8-14e29f6ddf0a.png);
         }
         .flexbox-searchContainer {
           display: flex;
           align-items: center;
           justify-content: center;
-            border: 0px solid yellow;
-          height: 200px !important;
+            border: 0px solid black;
+          height: 130px !important;
 
         }
         .flexbox-searchbar {
-            border: 0px solid white;
-          height: 155px !important;
+            border: 0px solid black;
+          height: 70px !important;
         }
         .flexbox-item {
             display: flex;
             flex-wrap: wrap;
             height: 220px !important;
             margin: 5px;
-            border: 1px solid #333;
-            background-color: #212124;
+            border: 0px solid #333;
+            background-color: white;
         }
         .flexbox-photo {
             display: flex;
+            height: 185px;
             width: 100%;
             justify-content: center;
-            background-color: #212124;
+            background-color: white;
         }
         .flexbox-caption {
             display: flex;
@@ -100,19 +101,16 @@ let htmlDoc = `<!DOCTYPE html>
             justify-content: left;
             align-items: center;
             /*  margin: 3px; */ 
-            /*  border: 1px solid #333; */
-            background-color: #212124;
-            color:  #D7DBDD;
+            /*  border: 0px solid #333; */
             font-family: Graphik Light, Helvetica, sans-serif;
             font-size: 0.72em;
         }
         .flexbox-site {
             width: 100%;
             height: 15px !important;
-            /* border: 1px solid #333; */
-            background-color: #212124;
+            /* border: 0px solid #333; */
+            background-color: white;
             font-size: 0.65em;
-            color: #D7DBDD;
         }
 
 
@@ -131,10 +129,9 @@ body {
 }
 
 input {
-  border: 1px solid transparent;
-  background-color: #303134;
-  color: white;
-  /* border-radius: 20px; */
+  border: 0px solid transparent;
+  background-color: #f1f2f2;
+  color: #202124;
   padding: 15px;
   font-size: 15px;
 }
@@ -146,14 +143,14 @@ input[type=text] {
 
 input[type=submit] {
   background-color: DodgerBlue;
-  color: white;
+  color: #f1f2f2;
   cursor: pointer;
 }
 
 .autocomplete-items {
   position: absolute;
-  border: 1px solid #303134;
-  color: white;
+  border: 0px solid #303134;
+  color: #3c4043;
   border-bottom: none;
   border-top: none;
   z-index: 99;
@@ -166,10 +163,10 @@ input[type=submit] {
 .autocomplete-items div {
   padding: 10px;
   cursor: pointer;
-  background-color: #303134; 
-  border-bottom: 1px solid #303134; 
-  border-left: 1px solid #303134; 
-  border-right: 1px solid #303134; 
+  background-color: #f1f2f2; 
+  border-bottom: 0px solid #303134; 
+  border-left: 0px solid #303134; 
+  border-right: 0px solid #303134; 
 }
 
 /*when hovering an item:*/
@@ -217,7 +214,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
     </style>
 </head>
-<body style="background-color:#212124;">
+<body style="background-color: white;">
 <div class="flexbox-header">
 
 <div class="flexbox-searchContainer">
@@ -226,8 +223,8 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   <div class="autocomplete" style="width:600px;">
         <input id="myInput" type="search" placeholder="Search" class="search-field" >
     <!-- <input id="myInput" type="text" name="myCountry" placeholder="Search"> -->
-        <button type="submit" class="search-button" onclick="document.location = 'https://htmlpreview.github.io/?https://raw.githubusercontent.com/JaredVogt/anv/main/output.html'; return false">
-          <img src="search.png">
+        <button type="submit" class="search-button" onclick="document.location = 'https://htmlpreview.github.io/?https://raw.githubusercontent.com/JaredVogt/anv/main/output_white.html'; return false">
+          <img src="search_white.png">
         </button>
         </div>
   </div>
@@ -243,7 +240,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 <!-- between thiese lines -->
 
-${output}
+${output_white}
 
 
 <!-- between thiese lines -->
@@ -352,7 +349,7 @@ function autocomplete(inp, arr) {
 }
 
 /*An array containing all the country names in the world:*/
-var countries = ['Sonja J Richardson', 'Sonja J Richardson Architect', 'Sonja J Richardson - Little Rock', 'Seriously twisted pretzels', 'See how she runs', 'So you wanna be a millionaire', 'Son of a bitch, get me a drink']
+var countries = ['Sonja J Richards', 'Sonja J Richards Architect', 'Sonja J Richards - Little Rock', 'Seriously twisted pretzels', 'See how she runs', 'So you wanna be a millionaire', 'Son of a bitch, get me a drink']
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), countries);
@@ -362,5 +359,5 @@ autocomplete(document.getElementById("myInput"), countries);
 </body>
 </html>`
 
-fs.writeFileSync( 'output.html', htmlDoc )
+fs.writeFileSync( 'output_white.html', htmlDoc )
 // console.log(htmlDoc)
