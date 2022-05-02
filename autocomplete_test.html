@@ -1,77 +1,35 @@
-// const userHomeDir = require('os').homedir();
-const defaultPath = `./`
-const excelFile ='photoData.xlsx' 
-// const excelFile = (argv['_'][0] ? argv['_'] : 'DMatrix Configuration.xlsx') // default if not user supplied
-// const outputFile = 'excelToolOutput.json'  // FIXME this needs an arg to define
-// const outputFile = (argv['_'][0] ? argv['_'] : 'excelToolOutput.json') // default if not user supplied
-const excelFullPath = `${defaultPath}${excelFile}`
-const fs = require('fs');
-const ep = require('./excelProcess');
-const excelToJson = require('convert-excel-to-json')  // https://github.com/DiegoZoracKy/convert-excel-to-json/
-
-const sheetsInfo = {
-  Images: { headerRow: 1, dataRow: 2 },
-}
-// console.log(excelFullPath)
-// Grab all necessary sheets
-const allSheetData = ep.grabSheets(excelFullPath, sheetsInfo)  // processing/validation done in this module
-// console.log(allSheetData)
-
-
-// variables
-const baseWidth = 150
-const maxLength = 24
-const baseURL = './photos/'
-// const baseURL = 'https://user-images.githubusercontent.com/968047/'
-let output_white = ''
-
-for (let image of allSheetData.Images) {
-  let width = parseInt(image.assocWidth) < baseWidth ? baseWidth : parseInt(image.assocWidth)
-  let availableLength = (maxLength * width)/baseWidth 
-  let textString = availableLength > image.description.length ? `${image.description}` : `${image.description.slice(0, (availableLength -3) )}...` 
-
-  const theOne = `
-  <div class="flexbox-item"  style="width: ${width}px;">
-    <div class="flexbox-photo"><img src=${baseURL}${image.githubName} width=${parseInt(image.assocWidth)}>
-    </div>
-    <div class="flexbox-caption">${textString}
-    </div>
-    <div class="flexbox-site">${image.website}
-    </div>
-  </div>`  
-   
-  output_white += theOne // console.log(theOne)
-}
-
-
-
-
-let htmlDoc = `<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .flexbox-container {
-            display: flex;
-            flex-wrap: wrap;
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://kit.fontawesome.com/88193b9a56.js" crossorigin="anonymous"></script>
 
-       }
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+
+
+/* here is the flexbox stuff */
+
         .flexbox-header {
           display: flex;
-          height: 130px !important;
+          height: 1130px !important;
+            border: 0px solid red;
           align-items: center;
           justify-content: center;
-          width: 1000px !important;
-          background-image: url(./giggio.png);
+          flex-direction: column;
         }
         .flexbox-searchContainer {
           display: flex;
           align-items: center;
           justify-content: center;
-            border: 0px solid black;
+            border: 0px solid blue;
           height: 130px !important;
 
         }
@@ -79,49 +37,6 @@ let htmlDoc = `<!DOCTYPE html>
             border: 0px solid black;
           height: 70px !important;
         }
-        .flexbox-item {
-            display: flex;
-            flex-wrap: wrap;
-            height: 220px !important;
-            margin: 5px;
-            border: 0px solid #333;
-            background-color: white;
-        }
-        .flexbox-photo {
-            display: flex;
-            height: 185px;
-            width: 100%;
-            justify-content: center;
-            background-color: white;
-        }
-        .flexbox-caption {
-            display: flex;
-            width: 100%;
-            height: 20px !important;
-            flex-direction: row;
-            justify-content: left;
-            align-items: center;
-            /*  margin: 3px; */ 
-            /*  border: 0px solid #333; */
-            font-family: Graphik Light, Helvetica, sans-serif;
-            font-size: 0.72em;
-        }
-        .flexbox-site {
-            width: 100%;
-            height: 15px !important;
-            /* border: 0px solid #333; */
-            background-color: white;
-            font-size: 0.65em;
-        }
-
-
-        * {
-  box-sizing: border-box;
-}
-
-body {
-  font: 16px Arial;  
-}
 
 /*the container must be positioned relative:*/
 .autocomplete {
@@ -214,17 +129,33 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 
     </style>
-</head>
-<body style="background-color: white;">
+
+
+
+
+</head>     
+<body style="background-color:white;">
+<!-- <form autocomplete="off" action=""> -->
+<!--   <div class="autocomplete" style="width:400px;"> -->
+<!--     <input id="myInput" type="text" name="myCountry" placeholder="Search"> -->
+<!--   </div> -->
+<!-- <button type="submit" class="btn btn-success"  onclick="document.location = 'https://htmlpreview.github.io/?https://raw.githubusercontent.com/JaredVogt/anv/main/output.html'; return false"> -->
+<!--     <i class="fa-solid fa-magnifying-glass fa-2x"></i> -->
+<!-- </button> -->
+<!-- </form> -->
+
+
+
 <div class="flexbox-header">
+  <img src="./pageImages/giggio_center.png"></img>
 
 <div class="flexbox-searchContainer">
 <div class="flexbox-searchbar">
 <form action="" autocomplete="off" class="form">
-  <div class="autocomplete" style="width:600px;">
+  <div class="autocomplete" style="width:400px;">
         <input id="myInput" type="search" placeholder="Search" class="search-field" >
     <!-- <input id="myInput" type="text" name="myCountry" placeholder="Search"> -->
-        <button type="submit" class="search-button" onclick="document.location = 'https://htmlpreview.github.io/?https://raw.githubusercontent.com/JaredVogt/anv/main/output_white.html'; return false">
+        <button type="submit" class="search-button" onclick="document.location = './output_white.html'; return false">
           <img src="search_white.png">
         </button>
         </div>
@@ -235,21 +166,6 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 
 
-
-
-<div class="flexbox-container">
-
-<!-- between thiese lines -->
-
-${output_white}
-
-
-<!-- between thiese lines -->
-
-
-   </div>
-
-<!--  everything below this is the script for the autocomplete -->
 <script>
 
 function autocomplete(inp, arr) {
@@ -350,15 +266,12 @@ function autocomplete(inp, arr) {
 }
 
 /*An array containing all the country names in the world:*/
-var countries = ['Sonja J Richards', 'Sonja J Richards Architect', 'Sonja J Richards - Little Rock', 'Seriously twisted pretzels', 'See how she runs', 'So you wanna be a millionaire', 'Son of a bitch, get me a drink']
+var countries = ['Sonja J Richardson', 'Seriously twisted pretzels', 'See how she runs', 'So you wanna be a millionaire', 'Son of a bitch, get me a drink']
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), countries);
 </script>
 
-
 </body>
-</html>`
+</html>
 
-fs.writeFileSync( 'output_white.html', htmlDoc )
-// console.log(htmlDoc)

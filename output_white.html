@@ -1,52 +1,4 @@
-// const userHomeDir = require('os').homedir();
-const defaultPath = `./`
-const excelFile ='photoData.xlsx' 
-// const excelFile = (argv['_'][0] ? argv['_'] : 'DMatrix Configuration.xlsx') // default if not user supplied
-// const outputFile = 'excelToolOutput.json'  // FIXME this needs an arg to define
-// const outputFile = (argv['_'][0] ? argv['_'] : 'excelToolOutput.json') // default if not user supplied
-const excelFullPath = `${defaultPath}${excelFile}`
-const fs = require('fs');
-const ep = require('./excelProcess');
-const excelToJson = require('convert-excel-to-json')  // https://github.com/DiegoZoracKy/convert-excel-to-json/
-
-const sheetsInfo = {
-  Images: { headerRow: 1, dataRow: 2 },
-}
-// console.log(excelFullPath)
-// Grab all necessary sheets
-const allSheetData = ep.grabSheets(excelFullPath, sheetsInfo)  // processing/validation done in this module
-// console.log(allSheetData)
-
-
-// variables
-const baseWidth = 150
-const maxLength = 24
-const baseURL = './photos/'
-// const baseURL = 'https://user-images.githubusercontent.com/968047/'
-let output_white = ''
-
-for (let image of allSheetData.Images) {
-  let width = parseInt(image.assocWidth) < baseWidth ? baseWidth : parseInt(image.assocWidth)
-  let availableLength = (maxLength * width)/baseWidth 
-  let textString = availableLength > image.description.length ? `${image.description}` : `${image.description.slice(0, (availableLength -3) )}...` 
-
-  const theOne = `
-  <div class="flexbox-item"  style="width: ${width}px;">
-    <div class="flexbox-photo"><img src=${baseURL}${image.githubName} width=${parseInt(image.assocWidth)}>
-    </div>
-    <div class="flexbox-caption">${textString}
-    </div>
-    <div class="flexbox-site">${image.website}
-    </div>
-  </div>`  
-   
-  output_white += theOne // console.log(theOne)
-}
-
-
-
-
-let htmlDoc = `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -241,7 +193,191 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 <!-- between thiese lines -->
 
-${output_white}
+
+  <div class="flexbox-item"  style="width: 150px;">
+    <div class="flexbox-photo"><img src=./photos/164947758-17d278b9-8a5d-4f29-8585-631055385b75.png width=139>
+    </div>
+    <div class="flexbox-caption">The Woman Erased from...
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 150px;">
+    <div class="flexbox-photo"><img src=./photos/165337578-17ef0983-c884-4157-beec-19c82593a40f.png width=138>
+    </div>
+    <div class="flexbox-caption">Sonja Richard's email...
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 253px;">
+    <div class="flexbox-photo"><img src=./photos/165416827-4cb4e7b9-3920-4089-9bdf-e436b04c972d.png width=253>
+    </div>
+    <div class="flexbox-caption">Look into my right eye
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 150px;">
+    <div class="flexbox-photo"><img src=./photos/164947808-a4e143dd-9765-42d0-b262-af4beae5bba9.png width=137>
+    </div>
+    <div class="flexbox-caption">Sonja J Richards and ...
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 226px;">
+    <div class="flexbox-photo"><img src=./photos/165416896-ef2f3d3b-4c85-443d-a287-b701464c45f2.png width=226>
+    </div>
+    <div class="flexbox-caption">Photobomb! Look closely
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 276px;">
+    <div class="flexbox-photo"><img src=./photos/164947788-a014ca38-7f32-405a-829a-60630a4dd02a.png width=276>
+    </div>
+    <div class="flexbox-caption">Summer with Woofy, 2022, Little Rock
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 257px;">
+    <div class="flexbox-photo"><img src=./photos/165557316-5198cf04-6a4a-46ae-bd2d-987097a9738d.png width=257>
+    </div>
+    <div class="flexbox-caption">Outside after dinner.. Where's my car?
+    </div>
+    <div class="flexbox-site">more.that
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 150px;">
+    <div class="flexbox-photo"><img src=./photos/166127790-2ebe7f56-08bc-4e7c-bb8c-8d871d980690.png width=81>
+    </div>
+    <div class="flexbox-caption">Fun times on the swam...
+    </div>
+    <div class="flexbox-site">more.that
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 287px;">
+    <div class="flexbox-photo"><img src=./photos/165613330-6a5ccf8b-4906-4534-9135-5b190e19ceb0.png width=287>
+    </div>
+    <div class="flexbox-caption">My first car… kidding!
+    </div>
+    <div class="flexbox-site">http://www.dca.io
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 150px;">
+    <div class="flexbox-photo"><img src=./photos/164947799-c07019b7-d631-4f9c-8780-51bd77295fae.png width=138>
+    </div>
+    <div class="flexbox-caption">Comfort, softness, wa...
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 276px;">
+    <div class="flexbox-photo"><img src=./photos/164947820-ed4a8b36-cfbc-4966-893a-d5292cf49616.png width=276>
+    </div>
+    <div class="flexbox-caption">Art gala… yes, we bid on the anthropomorp...
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 252px;">
+    <div class="flexbox-photo"><img src=./photos/165416925-34af03b3-ddfa-48c9-a639-9825207bf9de.png width=252>
+    </div>
+    <div class="flexbox-caption">Sonja J Richards and modern bathroom ...
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 150px;">
+    <div class="flexbox-photo"><img src=./photos/164947782-d93520f8-53b6-4f71-8d5c-e68d4fa3283a.png width=122>
+    </div>
+    <div class="flexbox-caption">The time I spent the ...
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 150px;">
+    <div class="flexbox-photo"><img src=./photos/166127793-2685927b-8bac-44e8-8c0b-6aaf439f5e4b.png width=105>
+    </div>
+    <div class="flexbox-caption">Out by the swamp…
+    </div>
+    <div class="flexbox-site">more.that
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 250px;">
+    <div class="flexbox-photo"><img src=./photos/166126199-7bce5d93-a901-4356-87a4-75f6627d122c.png width=250>
+    </div>
+    <div class="flexbox-caption">First annual Beaverstone Bay Cornhole
+    </div>
+    <div class="flexbox-site">http://www.dca.io
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 178px;">
+    <div class="flexbox-photo"><img src=./photos/166127903-f2d49d86-84f6-4458-a4f1-c91ef45e84b4.png width=178>
+    </div>
+    <div class="flexbox-caption">Turtles all the way down
+    </div>
+    <div class="flexbox-site">more.that
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 150px;">
+    <div class="flexbox-photo"><img src=./photos/164947777-e0ffdab5-d8c0-42f3-bd9f-8aeb5c20de1e.png width=137>
+    </div>
+    <div class="flexbox-caption">Why is there a rubber...
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 249px;">
+    <div class="flexbox-photo"><img src=./photos/166126211-52a57e9d-cc28-4e64-8afd-677250f04978.png width=249>
+    </div>
+    <div class="flexbox-caption">Pat, on ice…
+    </div>
+    <div class="flexbox-site">http://www.dca.io
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 150px;">
+    <div class="flexbox-photo"><img src=./photos/164947589-d107ee85-ed10-46b9-8e9b-ba884b6d6585.png width=136>
+    </div>
+    <div class="flexbox-caption">Fourth anniversay - f...
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 150px;">
+    <div class="flexbox-photo"><img src=./photos/164947618-d419f03a-2f20-4229-8522-330769f06c41.png width=138>
+    </div>
+    <div class="flexbox-caption">Another four years wi...
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 152px;">
+    <div class="flexbox-photo"><img src=./photos/165557057-8d7d86fa-c7ad-4111-9d52-8a6602b35ef3.png width=152>
+    </div>
+    <div class="flexbox-caption">Face palm emoji?
+    </div>
+    <div class="flexbox-site">more.that
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 306px;">
+    <div class="flexbox-photo"><img src=./photos/165416833-604f5947-3abf-49d6-972a-8987e749165c.png width=306>
+    </div>
+    <div class="flexbox-caption">Over yonder… something outside the window
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
+  <div class="flexbox-item"  style="width: 150px;">
+    <div class="flexbox-photo"><img src=./photos/164947732-3e81f07f-872e-4a7b-bf97-8d5d45a864c3.png width=138>
+    </div>
+    <div class="flexbox-caption">Does corduroy ever go...
+    </div>
+    <div class="flexbox-site">this.that.com
+    </div>
+  </div>
 
 
 <!-- between thiese lines -->
@@ -358,7 +494,4 @@ autocomplete(document.getElementById("myInput"), countries);
 
 
 </body>
-</html>`
-
-fs.writeFileSync( 'output_white.html', htmlDoc )
-// console.log(htmlDoc)
+</html>
