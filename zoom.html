@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1000, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+    <style>
+    </style>
+</head>
+<body>
+<style>
+  #pixel {
+    transform-origin: 616px 330px;
+  }
+
+  .zoom {
+    transform: scale(60);
+    /* https://www.w3schools.com/css/css3_transitions.asp */
+    /* transition: transform 2s; */
+    /* transition: transform 2s linear; */
+    transition: transform 12s ease-in-out;
+  }
+
+  .image {
+    image-rendering: pixelated;
+  }
+</style>
+
+<div id="pixel">
+  <img class="image" src="./image.png" />
+</div>
+
+<script>
+  window.addEventListener('click', function() {
+    const div = document.getElementById('pixel');
+    div.classList.toggle('zoom');
+  });
+</script></body>
+</html>
+
